@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "dependencies": {
+    "incremental-dom": "^0.6.0"
+  }
+}

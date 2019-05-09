@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "scripts": {
+    "install": "rollup --config"
+  },
+  "dependencies": {
+    "@angular/core": "^7.2.15",
+    "rxjs": "^6.5.1"
+  },
+  "devDependencies": {
+    "rollup": "^1.11.3",
+    "rollup-plugin-node-resolve": "^4.2.3"
+  }
+}
