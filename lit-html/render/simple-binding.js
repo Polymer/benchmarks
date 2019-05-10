@@ -1,5 +1,5 @@
 import * as bench from '/bench.js';
-
+import {DATA, DATA_IT} from '../../common/render/simple-data.js';
 import {html, render} from '../node_modules/lit-html/lit-html.js';
 
 const template = function template(instance) {
@@ -12,20 +12,16 @@ const template = function template(instance) {
     <span>${instance.data.name2}</span>`;
 };
 
-const names = [
-  {name: 'YOUR NAME 0', name2: 'MY NAME 0'},
-  {name: 'YOUR NAME 1', name2: 'MY NAME 1'},
-  {name: 'YOUR NAME 2', name2: 'MY NAME 2'},
-];
+const update = new URL(window.location.href).searchParams.has('update');
 
-const renderNext = () => {
-  const data = names.shift();
-  names.push(data);
-  render(template({data}), document.body);
-};
+if (update) {
+  render(template({data: DATA}), document.body);
+  bench.start();
+  render(template({data: DATA_IT[0]}), document.body);
+  bench.stop();
 
-renderNext();
-
-bench.start();
-renderNext();
-bench.stop();
+} else {
+  bench.start();
+  render(template({data: DATA}), document.body);
+  bench.stop();
+}

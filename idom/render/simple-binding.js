@@ -1,5 +1,5 @@
 import * as bench from '/bench.js';
-
+import {DATA, DATA_IT} from '../../common/render/simple-data.js';
 const idom = window.IncrementalDOM;
 
 const template = function template(instance) {
@@ -27,20 +27,16 @@ const template = function template(instance) {
   idom.elementClose('span');
 };
 
-const names = [
-  {name: 'YOUR NAME 0', name2: 'MY NAME 0'},
-  {name: 'YOUR NAME 1', name2: 'MY NAME 1'},
-  {name: 'YOUR NAME 2', name2: 'MY NAME 2'},
-];
+const update = new URL(window.location.href).searchParams.has('update');
 
-const renderNext = () => {
-  const data = names.shift();
-  names.push(data);
-  idom.patch(document.body, () => template({data}));
-};
+if (update) {
+  idom.patch(document.body, () => template({data: DATA}));
+  bench.start();
+  idom.patch(document.body, () => template({data: DATA_IT[0]}));
+  bench.stop();
 
-renderNext();
-
-bench.start();
-renderNext();
-bench.stop();
+} else {
+  bench.start();
+  idom.patch(document.body, () => template({data: DATA}));
+  bench.stop();
+}

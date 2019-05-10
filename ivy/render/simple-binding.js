@@ -1,4 +1,6 @@
 import * as bench from '/bench.js';
+
+import {DATA, DATA_IT} from '../../common/render/simple-data.js';
 import * as ivy from '../ivy.bundle.js';
 
 const template = function template(rf, instance) {
@@ -39,28 +41,36 @@ const template = function template(rf, instance) {
 const constCount = 16;
 const varCount = 6;
 
-const names = [
-  {name: 'YOUR NAME 0', name2: 'MY NAME 0'},
-  {name: 'YOUR NAME 1', name2: 'MY NAME 1'},
-  {name: 'YOUR NAME 2', name2: 'MY NAME 2'},
-];
+const update = new URL(window.location.href).searchParams.has('update');
 
-let host = undefined;
-const renderNext = () => {
-  const data = names.shift();
-  names.push(data);
-  host = ivy.renderTemplate(
+if (update) {
+  const host = ivy.renderTemplate(
       document.body,
       template,
       constCount,
       varCount,
-      {data},
+      {data: DATA},
+      ivy.domRendererFactory3);
+
+  bench.start();
+  ivy.renderTemplate(
+      document.body,
+      template,
+      constCount,
+      varCount,
+      {data: DATA_IT[0]},
       ivy.domRendererFactory3,
       host);
-};
+  bench.stop();
 
-renderNext();
-
-bench.start();
-renderNext();
-bench.stop();
+} else {
+  bench.start();
+  ivy.renderTemplate(
+      document.body,
+      template,
+      constCount,
+      varCount,
+      {data: DATA},
+      ivy.domRendererFactory3)
+  bench.stop();
+}
