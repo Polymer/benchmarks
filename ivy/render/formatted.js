@@ -100,12 +100,36 @@ function template(rf, instance) {
 const constCount = 2;
 const varCount = 0;
 
-bench.start();
-ivy.renderTemplate(
-    document.body,
-    template,
-    constCount,
-    varCount,
-    {data: longStrings},
-    ivy.domRendererFactory3);
-bench.stop();
+const update = new URL(window.location.href).searchParams.has('update');
+
+if (update) {
+  const host = ivy.renderTemplate(
+      document.body,
+      template,
+      constCount,
+      varCount,
+      {data: longStrings},
+      ivy.domRendererFactory3);
+
+  bench.start();
+  ivy.renderTemplate(
+      document.body,
+      template,
+      constCount,
+      varCount,
+      {data: longStrings.reverse()},
+      ivy.domRendererFactory3,
+      host);
+  bench.stop();
+
+} else {
+  bench.start();
+  ivy.renderTemplate(
+      document.body,
+      template,
+      constCount,
+      varCount,
+      {data: longStrings},
+      ivy.domRendererFactory3);
+  bench.stop();
+}

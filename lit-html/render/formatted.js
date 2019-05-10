@@ -30,6 +30,16 @@ function template(instance) {
                                        run.text}</span>`)}</span>`);
 };
 
-bench.start();
-render(template({data: longStrings}), document.body);
-bench.stop();
+const update = new URL(window.location.href).searchParams.has('update');
+
+if (update) {
+  render(template({data: longStrings}), document.body);
+  bench.start();
+  render(template({data: longStrings.reverse()}), document.body);
+  bench.stop();
+
+} else {
+  bench.start();
+  render(template({data: longStrings}), document.body);
+  bench.stop();
+}

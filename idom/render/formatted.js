@@ -24,6 +24,18 @@ const template = function template(instance) {
   });
 };
 
-bench.start();
-idom.patch(document.body, () => template({data: longStrings}));
-bench.stop();
+const update = new URL(window.location.href).searchParams.has('update');
+
+setTimeout(() => {
+  if (update) {
+    idom.patch(document.body, () => template({data: longStrings}));
+    bench.start();
+    idom.patch(document.body, () => template({data: longStrings.reverse()}));
+    bench.stop();
+
+  } else {
+    bench.start();
+    idom.patch(document.body, () => template({data: longStrings}));
+    bench.stop();
+  }
+}, 100);
