@@ -1,3 +1,4 @@
+import * as bench from '/bench.js';
 import {html, render} from '../node_modules/lit-html/lit-html.js';
 
 const template = function template(instance) {
@@ -43,8 +44,6 @@ const data = {
     'navigationEndpoint': '#test'
   },
 };
-
-import * as bench from '/bench.js';
 
 bench.start();
 render(template(data), document.body);

@@ -1,8 +1,6 @@
 import * as bench from '/bench.js';
 import * as ivy from '../ivy.bundle.js';
 
-const unwrapSafe = (x) => x;
-
 const template = function template(rf, instance) {
   if (rf & ivy.RenderFlags.Create) {
     ivy.elementStart(0, 'span', []);

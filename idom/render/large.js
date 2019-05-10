@@ -1,5 +1,4 @@
 import * as bench from '/bench.js';
-
 const idom = window.IncrementalDOM;
 
 const unwrapSafe = (x) => x;
