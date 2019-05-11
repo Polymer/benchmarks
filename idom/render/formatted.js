@@ -26,16 +26,14 @@ const template = function template(instance) {
 
 const update = new URL(window.location.href).searchParams.has('update');
 
-setTimeout(() => {
-  if (update) {
-    idom.patch(document.body, () => template({data: longStrings}));
-    bench.start();
-    idom.patch(document.body, () => template({data: longStrings.reverse()}));
-    bench.stop();
+if (update) {
+  idom.patch(document.body, () => template({data: longStrings}));
+  bench.start();
+  idom.patch(document.body, () => template({data: longStrings.reverse()}));
+  bench.stop();
 
-  } else {
-    bench.start();
-    idom.patch(document.body, () => template({data: longStrings}));
-    bench.stop();
-  }
-}, 100);
+} else {
+  bench.start();
+  idom.patch(document.body, () => template({data: longStrings}));
+  bench.stop();
+}
