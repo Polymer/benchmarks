@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "bench": "tach",
-    "prepare": "bash -c 'for dir in $(ls -1d */package.json | cut -d/ -f1); do (cd $dir && npm install); done'",
+    "prepare": "npm run install-children",
+    "install-children": "bash -c 'for dir in $(ls -1d */package.json | cut -d/ -f1); do (cd $dir && npm install); done'",
     "format": "find . -name node_modules -prune -o -name \"*.js\" -print | xargs clang-format --style=file -i"
   },
   "repository": {
