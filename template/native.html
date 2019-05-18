@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <title>native template benchmark</title>
+  </head>
+  <body>
+    <script>
+      if (!window.HTMLTemplateElement) {
+        throw new Error('Native template not available.')
+      }
+    </script>
+    <script type="module">
+      import {runTemplateBenchmark} from './common.js';
+      runTemplateBenchmark();
+    </script>
+  </body>
+</html>

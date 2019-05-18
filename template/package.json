@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "dependencies": {
+    "@webcomponents/template": "github:webcomponents/template#force",
+    "lit-html": "^1.0.0"
+  }
+}

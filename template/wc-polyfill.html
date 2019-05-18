@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <title>webcomponentsjs template polyfill benchmark</title>
+  </head>
+  <body>
+    <script>
+      if (window.HTMLTemplateElement) {
+        HTMLTemplateElement.forcePolyfill = undefined;
+      }
+   </script>
+
+    <script src="./node_modules/@webcomponents/template/template.js"></script>
+
+    <script type="module">
+      import {runTemplateBenchmark} from './common.js';
+      runTemplateBenchmark();
+    </script>
+  </body>
+</html>

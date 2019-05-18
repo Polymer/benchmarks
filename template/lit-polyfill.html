@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+  <head>
+    <title>lit-html template polyfill benchmark</title>
+  </head>
+  <body>
+    <script type="module">
+      import {runTemplateBenchmark} from './common.js';
+      import {initTemplatePolyfill} from '../node_modules/lit-html/polyfills/template_polyfill.js';
+      initTemplatePolyfill();
+      runTemplateBenchmark();
+    </script>
+  </body>
+</html>
