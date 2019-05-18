@@ -4,6 +4,11 @@ import {longStrings} from '../../common/render/strings.js';
 import {unsafeHTML} from '../node_modules/lit-html/directives/unsafe-html.js';
 import {html, render} from '../node_modules/lit-html/lit-html.js';
 
+import {initTemplatePolyfill} from '../node_modules/lit-html/polyfills/template_polyfill.js';
+if (new URL(window.location.href).searchParams.has('tp')) {
+  initTemplatePolyfill(true);
+};
+
 function getStyle(run) {
   let classes = new Array();
   if (run.bold) {

@@ -1,6 +1,11 @@
 import * as bench from '/bench.js';
 import {html, render} from '../node_modules/lit-html/lit-html.js';
 
+import {initTemplatePolyfill} from '../node_modules/lit-html/polyfills/template_polyfill.js';
+if (new URL(window.location.href).searchParams.has('tp')) {
+  initTemplatePolyfill(true);
+};
+
 const template = function template(instance) {
   return html`
           <div id="odd"><div id="dismissable"><div height="118" hovered=${

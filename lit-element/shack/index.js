@@ -11,6 +11,11 @@
 
 import './elements/shack-app.js';
 
+import {initTemplatePolyfill} from '../node_modules/lit-html/polyfills/template_polyfill.js';
+if (new URL(window.location.href).searchParams.has('tp')) {
+  initTemplatePolyfill(true);
+};
+
 (async function() {
   const categories = {
     'mens_outerwear': {

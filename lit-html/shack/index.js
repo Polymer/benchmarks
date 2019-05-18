@@ -9,7 +9,12 @@
  * rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
+import {initTemplatePolyfill} from '../node_modules/lit-html/polyfills/template_polyfill.js';
 import {appData, renderApp} from './elements/shack-app.js';
+
+if (new URL(window.location.href).searchParams.has('tp')) {
+  initTemplatePolyfill(true);
+};
 
 (async function() {
   appData.categories = {

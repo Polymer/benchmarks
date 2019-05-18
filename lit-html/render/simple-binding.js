@@ -2,6 +2,11 @@ import * as bench from '/bench.js';
 import {DATA, DATA_IT} from '../../common/render/simple-data.js';
 import {html, render} from '../node_modules/lit-html/lit-html.js';
 
+import {initTemplatePolyfill} from '../node_modules/lit-html/polyfills/template_polyfill.js';
+if (new URL(window.location.href).searchParams.has('tp')) {
+  initTemplatePolyfill(true);
+};
+
 const template = function template(instance) {
   return html`
     <span>HELLO ${instance.data.name}</span>
